@@ -39,6 +39,10 @@ public class Principal {
         nome = sc.next();
         comando.update(nome, id);
         
+        System.out.println("Digite o ID do nome para deletar:");
+        id= sc.nextInt();
+        comando.delete(id);
+        
         conecta.desconecta();                                                   // chama o metodo desconecta da classe concta do pacote sql para finalizar a conexao
     }
 }

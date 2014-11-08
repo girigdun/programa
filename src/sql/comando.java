@@ -21,7 +21,6 @@ public class comando {
         pst.execute();                                                           // executa                                       
         System.out.println("Nome inserido com sucesso.");                       //mensagem de suceso se conseguiu executar
         pst.close();                                                             // encerra a inserção
-        System.out.println("comando Encerrado!");                               //mensagem de sucesso se conseguiu encerrar
     }
 
     public static void select(int selectId) throws Exception {                              // metodo para seleção
@@ -36,17 +35,24 @@ public class comando {
             System.out.println("o Nome consultado é : " + c_nome);              //mensagem de resultado da consulta
         }
         pst.close();                                                             //encerra a consulta
-        System.out.println("comando Encerrado!");                               //mensagem de sucesso se conseguiu encerrar
     }
 
-    public static void update(String updateNome , int updateId) throws Exception {
-    String sql = "UPDATE cliente SET nome=? WHERE id = ?";                  
+    public static void update(String updateNome, int updateId) throws Exception {
+        String sql = "UPDATE cliente SET nome=? WHERE id = ?";
         PreparedStatement pst = conecta.conector.prepareStatement(sql);
         pst.setInt(2, updateId);
         pst.setString(1, updateNome);
         pst.execute();
         System.out.println("Alteração feita com sucesso!");
         pst.close();
-        System.out.println("comando Encerrado!");
+    }
+
+    public static void delete(int deleteId) throws Exception {
+        String sql = "DELETE FROM cliente where id= ?";
+        PreparedStatement pst = conecta.conector.prepareStatement(sql);
+        pst.setInt(1, deleteId);
+        pst.execute();
+        System.out.println("Deleção feita com sucesso");
+        pst.close();
     }
 }
