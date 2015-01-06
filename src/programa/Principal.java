@@ -24,23 +24,23 @@ public class Principal {
     
         System.out.println("Digite um nome de cliente");                        
         cliente.setNome(sc.next());                                             
-        comando.insert(cliente.getNome());                                      
+        comando.insert(cliente);
         
         System.out.println("");
         
         System.out.println("Digite um ID para busca:");                         
         cliente.setId(sc.nextInt());                                            
-        comando.select(cliente.getId());                                        
+        comando.select(cliente);                                        
         
         System.out.println("Digite o ID do cadastro para ser auterado");
         cliente.setId(sc.nextInt());
         System.out.println("Digite o novo valor do campo Nome:");
         cliente.setNome(sc.next());
-        comando.update(cliente.getNome(), cliente.getId());
+        comando.update(cliente);
         
         System.out.println("Digite o ID do nome para deletar:");
         cliente.setId(sc.nextInt());
-        comando.delete(cliente.getId());
+        comando.delete(cliente);
         
         conecta.desconecta();                                                 
     }
