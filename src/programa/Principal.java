@@ -18,8 +18,11 @@ import sql.conecta;
 public class Principal {
 
     public static void main(String[] args) throws SQLException, Exception {     
-        Scanner sc = new Scanner(System.in);                                    
-        conecta.conexao();                                                      
+        conecta.conexao();
+        Janela tela = new Janela();
+	tela.setVisible(true);
+        /**Scanner sc = new Scanner(System.in);                                    
+        
         ClienteBD cliente = new ClienteBD();
     
         System.out.println("Digite um nome de cliente");                        
@@ -42,6 +45,6 @@ public class Principal {
         cliente.setId(sc.nextInt());
         comando.delete(cliente);
         
-        conecta.desconecta();                                                 
+        conecta.desconecta();    */                                             
     }
 }
