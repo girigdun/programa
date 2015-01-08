@@ -41,6 +41,8 @@ public class Janela extends javax.swing.JFrame {
         JBlimpar = new javax.swing.JButton();
         JBsalvar = new javax.swing.JButton();
         JBsair = new javax.swing.JButton();
+        JBpesquisa = new javax.swing.JButton();
+        JBalterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,16 +77,24 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
+        JBpesquisa.setText("Pesquisar");
+        JBpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBpesquisaActionPerformed(evt);
+            }
+        });
+
+        JBalterar.setText("Alterar");
+        JBalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBalterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(JBlimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                .addComponent(JBsalvar)
-                .addGap(53, 53, 53))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -97,9 +107,19 @@ public class Janela extends javax.swing.JFrame {
                             .addComponent(JTFnome)
                             .addComponent(JTFid, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(JBsair)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(JBlimpar)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBsalvar)
+                        .addGap(28, 28, 28)
+                        .addComponent(JBpesquisa)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBalterar)))
+                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JBsair)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,13 +132,15 @@ public class Janela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLid)
                     .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBlimpar)
-                    .addComponent(JBsalvar))
-                .addGap(18, 18, 18)
+                    .addComponent(JBsalvar)
+                    .addComponent(JBpesquisa)
+                    .addComponent(JBalterar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(JBsair)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
 
         pack();
@@ -146,6 +168,7 @@ public class Janela extends javax.swing.JFrame {
 
     private void JBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBsalvarActionPerformed
         // TODO add your handling code here:
+        JTFid.setText("");
         ClienteBD cliente = new ClienteBD();
         cliente.setNome(JTFnome.getText());
         try {
@@ -154,6 +177,31 @@ public class Janela extends javax.swing.JFrame {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_JBsalvarActionPerformed
+
+    private void JBpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBpesquisaActionPerformed
+        // TODO add your handling code here:
+        JTFnome.setText("");
+        ClienteBD cliente = new ClienteBD();
+        cliente.setId(Integer.parseInt(JTFid.getText()));
+        try {
+            comando.select(cliente);
+            JTFnome.setText(cliente.getResultado());
+        } catch (Exception ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_JBpesquisaActionPerformed
+
+    private void JBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBalterarActionPerformed
+        // TODO add your handling code here:
+        ClienteBD cliente = new ClienteBD();
+        cliente.setNome(JTFnome.getText());
+        cliente.setId(Integer.parseInt(JTFid.getText()));
+        try {
+            comando.update(cliente);
+        } catch (Exception ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_JBalterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,7 +239,9 @@ public class Janela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBalterar;
     private javax.swing.JButton JBlimpar;
+    private javax.swing.JButton JBpesquisa;
     private javax.swing.JButton JBsair;
     private javax.swing.JButton JBsalvar;
     private javax.swing.JLabel JLid;

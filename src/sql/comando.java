@@ -7,6 +7,7 @@ package sql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +19,9 @@ public class comando {
         String sql = "INSERT INTO cliente(nome) VALUES (?)";                    // comando sql
         PreparedStatement pst = conecta.conector.prepareStatement(sql);          // usa o preparedstatement pois eu quero usar uma referencia que ira seguir atravez do caminho do conector
         pst.setString(1, cliente.getNome());                                        //minha referencia (posicao,referencia)
-        pst.execute();                                                           // executa                                       
-        System.out.println("Nome inserido com sucesso.");                       //mensagem de suceso se conseguiu executar
+        pst.execute();                                                           // executa
+        JOptionPane.showMessageDialog(null,"Nome inserido com sucesso.");
+        //System.out.println("Nome inserido com sucesso.");                       //mensagem de suceso se conseguiu executar
         pst.close();                                                             // encerra a inserção
     }
 
@@ -32,7 +34,9 @@ public class comando {
         while (rs.next()) {                                                     //enquanto estiver executando
 
             String c_nome = rs.getString("nome");                               //variavel c_nome recebera o resultado do campo "nome".
-            System.out.println("o Nome consultado é : " + c_nome);              //mensagem de resultado da consulta
+            cliente.setResultado("Nome consultado: " + c_nome);  
+            //JOptionPane.showMessageDialog(null,"o Nome consultado é : " + c_nome);              //mensagem de resultado da consulta
+            
         }
         pst.close();                                                             //encerra a consulta
     }
@@ -43,7 +47,8 @@ public class comando {
         pst.setInt(2, cliente.getId());
         pst.setString(1, cliente.getNome());
         pst.execute();
-        System.out.println("Alteração feita com sucesso!");
+        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso!");
+        //System.out.println("Alteração feita com sucesso!");
         pst.close();
     }
 
