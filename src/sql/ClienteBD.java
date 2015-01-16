@@ -1,28 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sql;
 
-/**
- *
- * @author Felipe
- */
 public class ClienteBD {
+
     private String nome;
     private int id;
-    private String resultado;
+    private String resultadonome;
+    private String resultadoid;
+    private int teste;
 
-    public String getResultado() {
-        return resultado;
+    public int getTeste() {
+        return teste;
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
+    public void setTeste(int teste) {
+        this.teste = teste;
     }
 
-   
+    public String getResultadoid() {
+        return resultadoid;
+    }
+
+    public void setResultadoid(String resultadoid) {
+        this.resultadoid = resultadoid;
+    }
+
+    public String getResultadonome() {
+        return resultadonome;
+    }
+
+    public void setResultadonome(String resultadonome) {
+        this.resultadonome = resultadonome;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -38,5 +47,5 @@ public class ClienteBD {
     public void setId(int id) {
         this.id = id;
     }
-    
+
 }
